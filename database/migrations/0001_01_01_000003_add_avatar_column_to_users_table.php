@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('avatar')->nullable();
-            $table->integer('is_active')->index()->default(0);
+            $table->integer('is_active')->index()->default(1);
         });
     }
 

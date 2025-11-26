@@ -41,13 +41,11 @@
                             <x-avatar :title="\Illuminate\Support\Str::limit($user->name, 20)" image="{{ $user->avatar ?? asset('assets/img/default-avatar.png') }}" class="h-6" />
                         </x-button>
                     </x-slot:trigger>
-                    {{-- <x-menu-item title="My Profile" link="{{ route('users.profile') }}" />
-                    <x-menu-separator /> --}}
-                    <x-menu-item title="My Profile" link="/" />
+                    <x-menu-item title="My Profile" link="{{ route('users.profile') }}" icon="o-user" />
                     <x-menu-separator />
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <x-button label="Log Out" type="submit" class="w-full btn-sm btn-error btn-soft min-w-36" />
+                        <x-button label="Log Out" type="submit" icon="o-power" class="w-full btn-sm btn-error btn-soft min-w-36" />
                     </form>
                 </x-dropdown>
                 @endif

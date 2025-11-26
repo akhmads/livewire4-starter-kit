@@ -7,17 +7,27 @@
             <x-auth-alert :status="__('A new verification link has been sent to the email address you provided during registration.')" class="alert-success" />
         @endif
 
-        <div class="flex flex-col items-center justify-between space-y-3">
+        <div class="flex flex-col gap-2 pt-8">
             <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-            <x-button :label="__('Resend verification email')" wire:click="sendVerification" spinner="sendVerification" class="w-full btn btn-primary" />
-            {{-- <div class="divider">Or</div><x-button : label="__('Log out')" wire: click="logout" spinner="logout" class="w-full" /> --}}
+                @csrf
+                <x-button
+                    :label="__('Resend verification email')"
+                    type="submit"
+                    class="w-full btn btn-primary"
+                />
             </form>
-        </div>
 
-        <div class="space-x-1 text-center text-sm">
-            <span class="text-zinc-600 dark:text-zinc-400">{{ __('Back to') }}</span>
-            <a href="{{ route('home') }}" wire:navigate class="text-blue-600 dark:text-blue-400 hover:underline">{{ __('Home') }}</a>
+            <div class="divider">Or</div>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-button
+                    :label="__('Log Out')"
+                    type="submit"
+                    class="w-full btn btn-error btn-soft"
+                    icon="o-power"
+                />
+            </form>
         </div>
 
     </x-auth-card>

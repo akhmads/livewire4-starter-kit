@@ -1,12 +1,12 @@
 <?php
 
-use Livewire\Volt\Component;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Mary\Traits\Toast;
-use App\Rules\CurrentPassword;
 use App\Models\User;
+use Mary\Traits\Toast;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use App\Rules\CurrentPassword;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 new class extends Component {
     use Toast, WithFileUploads;
@@ -25,7 +25,7 @@ new class extends Component {
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
         $this->storedAvatar = auth()->user()->avatar;
-        $this->role = auth()->user()->getRoleNames()->first();
+        // $this->role = auth()->user()->getRoleNames()->first();
         $this->avatar = '';
     }
 
@@ -73,14 +73,14 @@ new class extends Component {
     <div class="xl:w-[60%]">
         <div class="space-y-6 ">
             <x-form wire:submit="save">
-                <x-card separator>
+                <x-card separator class="border border-base-300">
                     <div class="space-y-4">
                         <x-file label="Avatar" wire:model="avatar" accept="image/png, image/jpeg" crop-after-change>
                             <img src="{{ $storedAvatar ?? asset('assets/img/default-avatar.png') }}" class="h-40 rounded-lg" />
                         </x-file>
                         <x-input label="Name" wire:model="name" />
                         <x-input label="Email" wire:model="email" />
-                        <x-input label="Role" wire:model="role" readonly />
+                        {{-- <x-input label="Role" wire:model="role" readonly /> --}}
                     </div>
                     <x-slot:actions>
                         <x-button label="Save" icon="o-paper-airplane" spinner="save" type="submit" class="btn-primary" />
@@ -89,7 +89,7 @@ new class extends Component {
             </x-form>
 
             <x-form wire:submit="changePassword">
-                <x-card title="Change Password" separator>
+                <x-card title="Change Password" separator class="border border-base-300">
                     <div class="space-y-4">
                         <x-input label="Current Password" wire:model="current_password" type="password" />
                         <x-input label="Password" wire:model="password" type="password" />

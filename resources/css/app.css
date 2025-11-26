@@ -4,7 +4,6 @@
 @source '../../storage/framework/views/*.php';
 @source "../**/*.blade.php";
 @source "../**/*.js";
-@source "../**/*.vue";
 
 @theme {
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
@@ -21,6 +20,21 @@
 /** daisyUI */
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
+    exclude: properties;
+}
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --radius-field: 0.6rem;
+    --color-base-content: oklch(20% 0.042 265.755);
+    --btn-color: oklch(100% 0 0);
+    --input-color: oklch(100% 0 0);
+}
+@plugin "daisyui/theme" {
+    name: "dark";
+    --radius-field: 0.6rem;
+    --btn-color: var(--btn-bg);
+    --input-color: oklch(20% 0.1 280);
 }
 
 /* maryUI */
@@ -29,15 +43,68 @@
 /* Theme toggle */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/**
-* Paginator - Traditional style
-* Because Laravel defaults does not match well the design of daisyUI.
-*/
-
-.mary-table-pagination span[aria-current="page"] > span {
-    @apply bg-primary text-base-100;
+/* Custom components */
+[data-theme="light"] {
+    .input,
+    .textarea,
+    .select {
+        @apply shadow-xs border-zinc-300;
+    }
+    .btn-ghost {
+        color: var(--color-base-content);
+    }
 }
 
-.mary-table-pagination button {
-    @apply cursor-pointer;
+/* Pagination */
+.mary-table-pagination {
+    button,
+    span {
+        @apply text-sm;
+    }
+
+    button {
+        @apply cursor-pointer;
+    }
+
+    button:hover {
+        @apply bg-gray-100;
+    }
+
+    span[aria-current="page"] > span {
+        @apply bg-base-content/10;
+    }
+
+    button,
+    span[aria-current="page"] > span,
+    span[aria-disabled="true"] span {
+        @apply py-1 px-2;
+    }
+}
+
+/* custom form outline */
+.input,
+.select,
+.textarea {
+    &:focus,
+    &:focus-within {
+        @apply outline-offset-0 outline-2 outline-primary;
+    }
+}
+
+/* custom table style */
+.table th {
+    @apply font-medium text-[0.8rem];
+}
+.table td {
+    @apply truncate;
+}
+
+/* Hide FilePond credits */
+.filepond--credits {
+    display: none !important;
+}
+
+/* fix loading progress on header */
+.drawer-content progress {
+    @apply h-0.5!;
 }

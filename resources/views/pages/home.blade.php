@@ -28,7 +28,7 @@ new class extends Component {
                 />
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <x-button label="Sign Out" type="submit" icon="o-arrow-right-start-on-rectangle" class="btn" />
+                    <x-button label="Sign Out" type="submit" icon="o-power" class="btn btn-error btn-soft" />
                 </form>
             </div>
         </x-card>
