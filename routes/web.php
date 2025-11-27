@@ -9,5 +9,6 @@ Route::middleware(['auth'])->group(function () {
     Route::livewire('/users/create', 'pages::users.create')->name('users.create');
     Route::livewire('/users/{user}/edit', 'pages::users.edit')->name('users.edit');
     Route::livewire('/users/profile', 'pages::users.profile')->name('users.profile');
+    Route::livewire('/users/2fa', 'pages::users.2fa')->name('users.2fa');
 
 });

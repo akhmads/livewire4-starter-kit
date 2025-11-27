@@ -10,10 +10,12 @@
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="min-h-screen font-inter antialiased bg-base-200">
 
     {{ $slot }}
 
+    @livewireScripts
 </body>
 </html>

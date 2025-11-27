@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
 
+    @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen font-inter antialiased bg-base-200">
@@ -42,6 +43,7 @@
                         </x-button>
                     </x-slot:trigger>
                     <x-menu-item title="My Profile" link="{{ route('users.profile') }}" icon="o-user" />
+                    <x-menu-item title="2FA Auth" link="{{ route('users.2fa') }}" icon="o-qr-code" />
                     <x-menu-separator />
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -82,5 +84,7 @@
 
     {{-- Theme toggle --}}
     <x-theme-toggle class="hidden" />
+
+    @livewireScripts
 </body>
 </html>

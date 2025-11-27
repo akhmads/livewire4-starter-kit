@@ -81,6 +81,10 @@
     }
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 /* custom form outline */
 .input,
 .select,
